@@ -1,1 +1,211 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
+body {
+    font-family: -apple-system, sans-serif;
+    background: linear-gradient(180deg, #1E5FA0 0%, #4A8BC7 100%);
+    min-height: 100vh;
+    color: white;
+}
+
+.screen { display: none; padding: 16px; min-height: 100vh; }
+.screen.active { display: block; }
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-top: 8px;
+}
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 800;
+}
+.logo { font-size: 28px; }
+.back {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.title { font-size: 20px; font-weight: 700; }
+
+.user-greet {
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.95;
+    margin-bottom: 20px;
+}
+
+.status-card {
+    background: rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.status-label { font-size: 13px; opacity: 0.85; }
+.status-value { font-size: 16px; font-weight: 700; }
+
+.menu { display: flex; flex-direction: column; gap: 12px; }
+.menu-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: white;
+    color: #1E5FA0;
+    border: none;
+    padding: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 16px;
+    text-align: left;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    cursor: pointer;
+}
+.menu-btn:active { transform: scale(0.98); }
+.menu-btn .ico { font-size: 24px; }
+.menu-badge {
+    margin-left: auto;
+    background: #1E5FA0;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 10px;
+}
+
+.content {
+    background: white;
+    border-radius: 20px;
+    padding: 24px;
+    color: #2D2D2D;
+}
+.content h3 {
+    font-size: 17px;
+    color: #1E5FA0;
+    margin-bottom: 14px;
+}
+.content p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.order-card {
+    background: #F0F6FC;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-left: 4px solid #1E5FA0;
+}
+.order-card.urgent {
+    border-left-color: #FF6B00;
+    background: #FFF8F0;
+}
+.order-card.done {
+    opacity: 0.65;
+    border-left-color: #4CAF50;
+}
+.order-card.status-cancelled {
+    opacity: 0.5;
+    border-left-color: #D32F2F;
+}
+
+.order-head {
+    font-size: 15px;
+    font-weight: 700;
+    color: #2D2D2D;
+    margin-bottom: 8px;
+}
+.order-row {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 4px;
+}
+.order-foot {
+    font-size: 12px;
+    color: #999;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #E0E8F0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.badge-urgent {
+    display: inline-block;
+    background: #FF6B00;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    margin-left: 6px;
+}
+.badge-status {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 8px;
+}
+.badge-status.new { background: #FFF3CD; color: #B8860B; }
+.badge-status.accepted { background: #D1ECF1; color: #0C5460; }
+.badge-status.done { background: #D4EDDA; color: #155724; }
+
+.order-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #E0E8F0;
+    flex-wrap: wrap;
+}
+.order-actions button {
+    flex: 1;
+    min-width: 90px;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+}
+.btn-take { background: #D1ECF1; color: #0C5460; }
+.btn-route { background: #FFE4B5; color: #8B4513; }
+.btn-done { background: #D4EDDA; color: #155724; }
+.order-actions button:active { transform: scale(0.97); }
+
+.stub { text-align: center; padding: 40px 20px; }
+.stub-icon { font-size: 64px; margin-bottom: 20px; }
+.stub-text {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1E5FA0;
+    margin-bottom: 10px;
+}
+.stub-hint {
+    font-size: 14px;
+    color: #888;
+    line-height: 1.5;
+}
+
+.report-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #EEE;
+    font-size: 15px;
+}
+.report-row:last-child { border-bottom: none; }
+.report-row b { color: #1E5FA0; }
