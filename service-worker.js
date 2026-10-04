@@ -1,4 +1,4 @@
-const CACHE_NAME = 'aka-courier-v2';
+const CACHE_NAME = 'aka-courier-v10';
 const URLS_TO_CACHE = ['/', '/index.html', '/style.css', '/script.js', '/manifest.json'];
 
 self.addEventListener('install', function(event) {
