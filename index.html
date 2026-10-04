@@ -6,6 +6,7 @@
     <title>АКА Курьер</title>
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#1E5FA0">
+    <link rel="apple-touch-icon" href="/icon-192.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="АКА Курьер">
     <link rel="stylesheet" href="style.css">
@@ -23,8 +24,11 @@
             </div>
             <div id="user" class="user-greet"></div>
             <div class="status-card">
-                <div class="status-label">Статус</div>
-                <div id="courier-status" class="status-value">🟢 Свободен</div>
+                <div>
+                    <div class="status-label">Статус</div>
+                    <div class="status-value">🟢 Свободен</div>
+                </div>
+                <div id="today-stat" class="status-stat">0 заказов</div>
             </div>
             <div class="menu">
                 <button class="menu-btn" onclick="showScreen('orders')">
@@ -52,6 +56,11 @@
                 <button class="back" onclick="showScreen('main')">⬅</button>
                 <div class="title">Мои заказы</div>
             </div>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="active" onclick="setFilter('active')">Активные</button>
+                <button class="filter-btn" data-filter="done" onclick="setFilter('done')">Доставленные</button>
+                <button class="filter-btn" data-filter="all" onclick="setFilter('all')">Все</button>
+            </div>
             <div class="content" id="orders-list"></div>
         </div>
 
@@ -71,8 +80,8 @@
             <div class="content">
                 <div class="stub">
                     <div class="stub-icon">📍</div>
-                    <div class="stub-text">Отправка геолокации</div>
-                    <div class="stub-hint">Откройте бота и нажмите «📍 Геолокация»</div>
+                    <div class="stub-text">Отправка локации — в боте</div>
+                    <div class="stub-hint">Откройте бота → «📍 Геолокация» → «Отправить мою геолокацию»</div>
                 </div>
             </div>
         </div>
@@ -86,9 +95,24 @@
                 <h3>📖 Инструкция курьера</h3>
                 <p>1. Откройте «📦 Мои заказы»</p>
                 <p>2. В карточке — адрес магазина (откуда забрать) и адрес клиента (куда везти)</p>
-                <p>3. По порядку: <b>Забрал</b> → <b>В пути</b> → <b>Доставил</b></p>
-                <p>4. При доставке введите сумму, которую получили</p>
-                <p>5. Вечером откройте «📊 Мой отчёт»</p>
+                <p>3. Нажимайте по порядку: <b>📦 Забрал → 🚗 В пути → ✅ Доставил</b></p>
+                <p>4. При «Доставил» введите сумму, которую получили</p>
+                <p>5. Делитесь геолокацией — кнопка «📍»</p>
+                <p>6. Вечером откройте «📊 Мой отчёт»</p>
+            </div>
+        </div>
+
+        <div id="screen-done" class="screen">
+            <div class="top-bar">
+                <button class="back" onclick="showScreen('orders')">⬅</button>
+                <div class="title">Доставка</div>
+            </div>
+            <div class="content">
+                <h3>✅ Заказ доставлен</h3>
+                <p>Сколько получили с клиента?</p>
+                <label>💰 Сумма (смн)</label>
+                <input type="number" id="done-sum" placeholder="150">
+                <button class="btn" onclick="confirmDone()">Подтвердить доставку</button>
             </div>
         </div>
 
