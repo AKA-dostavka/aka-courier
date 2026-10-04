@@ -1,1 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АКА Курьер</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#1E5FA0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="АКА Курьер">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div id="app">
 
+        <div id="screen-main" class="screen active">
+            <div class="top-bar">
+                <div class="brand">
+                    <span class="logo">🚚</span>
+                    <span>АКА Курьер</span>
+                </div>
+            </div>
+            <div id="user" class="user-greet"></div>
+            <div class="status-card">
+                <div class="status-label">Статус</div>
+                <div id="courier-status" class="status-value">🟢 Свободен</div>
+            </div>
+            <div class="menu">
+                <button class="menu-btn" onclick="showScreen('orders')">
+                    <span class="ico">📦</span>
+                    <span>Мои заказы</span>
+                    <span id="orders-count" class="menu-badge"></span>
+                </button>
+                <button class="menu-btn" onclick="showScreen('report')">
+                    <span class="ico">📊</span>
+                    <span>Мой отчёт</span>
+                </button>
+                <button class="menu-btn" onclick="showScreen('location')">
+                    <span class="ico">📍</span>
+                    <span>Геолокация</span>
+                </button>
+                <button class="menu-btn" onclick="showScreen('howto')">
+                    <span class="ico">📖</span>
+                    <span>Как работать</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="screen-orders" class="screen">
+            <div class="top-bar">
+                <button class="back" onclick="showScreen('main')">⬅</button>
+                <div class="title">Мои заказы</div>
+            </div>
+            <div class="content" id="orders-list"></div>
+        </div>
+
+        <div id="screen-report" class="screen">
+            <div class="top-bar">
+                <button class="back" onclick="showScreen('main')">⬅</button>
+                <div class="title">Мой отчёт</div>
+            </div>
+            <div class="content" id="report-content"></div>
+        </div>
+
+        <div id="screen-location" class="screen">
+            <div class="top-bar">
+                <button class="back" onclick="showScreen('main')">⬅</button>
+                <div class="title">Геолокация</div>
+            </div>
+            <div class="content">
+                <div class="stub">
+                    <div class="stub-icon">📍</div>
+                    <div class="stub-text">Отправка геолокации</div>
+                    <div class="stub-hint">Откройте бота и нажмите «📍 Геолокация»</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-howto" class="screen">
+            <div class="top-bar">
+                <button class="back" onclick="showScreen('main')">⬅</button>
+                <div class="title">Как работать</div>
+            </div>
+            <div class="content">
+                <h3>📖 Инструкция курьера</h3>
+                <p>1. Откройте «📦 Мои заказы»</p>
+                <p>2. В карточке — адрес магазина (откуда забрать) и адрес клиента (куда везти)</p>
+                <p>3. По порядку: <b>Забрал</b> → <b>В пути</b> → <b>Доставил</b></p>
+                <p>4. При доставке введите сумму, которую получили</p>
+                <p>5. Вечером откройте «📊 Мой отчёт»</p>
+            </div>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
