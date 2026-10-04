@@ -41,7 +41,7 @@ body {
     text-align: center;
     font-size: 14px;
     opacity: 0.95;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .status-card {
@@ -53,8 +53,9 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-.status-label { font-size: 13px; opacity: 0.85; }
+.status-label { font-size: 12px; opacity: 0.85; margin-bottom: 2px; }
 .status-value { font-size: 16px; font-weight: 700; }
+.status-stat { font-size: 14px; font-weight: 700; opacity: 0.95; }
 
 .menu { display: flex; flex-direction: column; gap: 12px; }
 .menu-btn {
@@ -84,6 +85,27 @@ body {
     border-radius: 10px;
 }
 
+.filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+.filter-btn {
+    flex: 1;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.filter-btn.active {
+    background: white;
+    color: #1E5FA0;
+}
+
 .content {
     background: white;
     border-radius: 20px;
@@ -101,6 +123,39 @@ body {
     margin-bottom: 10px;
 }
 
+label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1E5FA0;
+    margin-bottom: 6px;
+    margin-top: 14px;
+}
+input, textarea {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #EEE;
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: inherit;
+    background: #F0F6FC;
+}
+input:focus, textarea:focus { outline: none; border-color: #1E5FA0; }
+
+.btn {
+    width: 100%;
+    background: #1E5FA0;
+    color: white;
+    border: none;
+    padding: 18px;
+    font-size: 17px;
+    font-weight: 700;
+    border-radius: 12px;
+    margin-top: 24px;
+    cursor: pointer;
+}
+.btn:active { transform: scale(0.98); }
+
 .order-card {
     background: #F0F6FC;
     border-radius: 12px;
@@ -116,10 +171,6 @@ body {
     opacity: 0.65;
     border-left-color: #4CAF50;
 }
-.order-card.status-cancelled {
-    opacity: 0.5;
-    border-left-color: #D32F2F;
-}
 
 .order-head {
     font-size: 15px;
@@ -131,7 +182,9 @@ body {
     font-size: 14px;
     color: #555;
     margin-bottom: 4px;
+    line-height: 1.4;
 }
+.order-row b { color: #1E5FA0; }
 .order-foot {
     font-size: 12px;
     color: #999;
@@ -161,6 +214,7 @@ body {
 }
 .badge-status.new { background: #FFF3CD; color: #B8860B; }
 .badge-status.accepted { background: #D1ECF1; color: #0C5460; }
+.badge-status.route { background: #FFE4B5; color: #8B4513; }
 .badge-status.done { background: #D4EDDA; color: #155724; }
 
 .order-actions {
@@ -173,8 +227,8 @@ body {
 }
 .order-actions button {
     flex: 1;
-    min-width: 90px;
-    padding: 12px;
+    min-width: 100px;
+    padding: 14px;
     border-radius: 10px;
     font-size: 13px;
     font-weight: 700;
@@ -203,9 +257,16 @@ body {
 .report-row {
     display: flex;
     justify-content: space-between;
-    padding: 12px 0;
+    padding: 14px 0;
     border-bottom: 1px solid #EEE;
     font-size: 15px;
 }
 .report-row:last-child { border-bottom: none; }
 .report-row b { color: #1E5FA0; }
+.report-row.total {
+    margin-top: 8px;
+    padding-top: 14px;
+    border-top: 2px solid #1E5FA0;
+    font-size: 17px;
+    font-weight: 700;
+}
