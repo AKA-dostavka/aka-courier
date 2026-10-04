@@ -44,7 +44,10 @@ function updateMainStats() {
         return o.status !== 'Доставлен';
     }).length;
     if (badge) badge.textContent = active > 0 ? active : '';
-    if (stat) stat.textContent = orders.filter(function(o) { return o.status === 'Доставлен'; }).length + ' доставлено';
+    if (stat) {
+        const doneCount = orders.filter(function(o) { return o.status === 'Доставлен'; }).length;
+        stat.textContent = doneCount + ' доставлено';
+    }
 }
 
 function escapeHtml(text) {
@@ -190,26 +193,44 @@ function renderReport() {
     const today = new Date().toLocaleDateString('ru-RU');
 
     let delivered = 0, cash = 0, active = 0;
+    let normalDone = 0, urgentDone = 0;
+
     for (let i = 0; i < orders.length; i++) {
         const o = orders[i];
         if (o.status === 'Доставлен') {
             delivered++;
             const r = parseInt(o.received || o.amount || 0);
             if (!isNaN(r)) cash += r;
+            if (o.urgent) urgentDone++;
+            else normalDone++;
         } else {
             active++;
         }
     }
 
-    const earned = delivered * 20;
+    const earnedNormal = normalDone * 20;
+    const earnedUrgent = urgentDone * 30;
+    const earned = earnedNormal + earnedUrgent;
     const toGive = cash - earned;
 
     let html = '<h3>📊 Отчёт за сегодня</h3>';
     html += '<div class="report-row"><span>📅 Дата</span><b>' + today + '</b></div>';
     html += '<div class="report-row"><span>✅ Доставлено</span><b>' + delivered + '</b></div>';
+
+    if (urgentDone > 0) {
+        html += '<div class="report-row"><span>🟡 Обычных</span><b>' + normalDone + '</b></div>';
+        html += '<div class="report-row"><span>🚀 Срочных</span><b>' + urgentDone + '</b></div>';
+    }
+
     html += '<div class="report-row"><span>🔄 В работе</span><b>' + active + '</b></div>';
     html += '<div class="report-row"><span>💰 Собрано с клиентов</span><b>' + cash + ' смн</b></div>';
-    html += '<div class="report-row"><span>🚚 Мой заработок</span><b>' + earned + ' смн</b></div>';
+
+    if (urgentDone > 0) {
+        html += '<div class="report-row"><span>🟡 Заработок обычные</span><b>' + earnedNormal + ' смн</b></div>';
+        html += '<div class="report-row"><span>🚀 Заработок срочные</span><b>' + earnedUrgent + ' смн</b></div>';
+    }
+
+    html += '<div class="report-row"><span>🚚 Всего заработал</span><b>' + earned + ' смн</b></div>';
     html += '<div class="report-row total"><span>💵 К сдаче</span><b>' + toGive + ' смн</b></div>';
     container.innerHTML = html;
 }
